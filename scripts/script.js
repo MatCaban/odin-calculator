@@ -9,6 +9,12 @@ const sixBtn = document.querySelector("#b6");
 const sevenBtn = document.querySelector("#b7");
 const eightBtn = document.querySelector("#b8");
 const nineBtn = document.querySelector("#b9");
+const commaBtn = document.querySelector("#comma");
+const plusBtn = document.querySelector("#plus");
+const divideBtn = document.querySelector("#divide");
+const multiplyBtn = document.querySelector("#multiply");
+const minusBtn = document.querySelector("#minus");
+const enterBtn = document.querySelector("#enter");
 
 
 
@@ -33,3 +39,8 @@ sixBtn.addEventListener("click", displayNumber);
 sevenBtn.addEventListener("click", displayNumber);
 eightBtn.addEventListener("click", displayNumber);
 nineBtn.addEventListener("click", displayNumber);
+commaBtn.addEventListener("click", displayNumber);
+plusBtn.addEventListener("click", displayNumber);
+minusBtn.addEventListener("click", displayNumber);
+divideBtn.addEventListener("click", displayNumber);
+multiplyBtn.addEventListener("click", displayNumber);
