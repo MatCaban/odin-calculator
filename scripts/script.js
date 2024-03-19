@@ -24,11 +24,15 @@ const lowerDisplay = document.querySelector(".lower-display")
 
 //write number of selected button into display
 let firstNum = "";
+let operationSign = "";
+let secondNum = "";
+const operators = [" X ", " - ", " + ", " / "]
 
-function displayNumber(e){    
-    firstNum += e.target.textContent;
+function displayNumber(e){
     console.log(firstNum);
     lowerDisplay.textContent += e.target.textContent;
+
+    
 }
 
 //buttons listener for displaying number
