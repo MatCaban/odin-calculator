@@ -45,6 +45,7 @@ body {
 .upper-display {
     width: 100%;
     height: 40%;
+    text-align: end;
 }
 
 .lower-display {
