@@ -23,8 +23,11 @@ const lowerDisplay = document.querySelector(".lower-display")
 
 
 //write number of selected button into display
-function displayNumber(e){
-    console.log(e.target.textContent);
+let firstNum = "";
+
+function displayNumber(e){    
+    firstNum += e.target.textContent;
+    console.log(firstNum);
     lowerDisplay.textContent += e.target.textContent;
 }
 
@@ -44,3 +47,4 @@ plusBtn.addEventListener("click", displayNumber);
 minusBtn.addEventListener("click", displayNumber);
 divideBtn.addEventListener("click", displayNumber);
 multiplyBtn.addEventListener("click", displayNumber);
+
