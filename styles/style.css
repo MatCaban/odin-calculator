@@ -1,0 +1,35 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+div {
+    border: 1px solid black;
+}
+
+#calculator {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height : 600px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.display {
+    width: 90%;
+    height: 20%;
+}
+
+.keyboard {
+    width: 90%;
+    height: 60%;
+}
