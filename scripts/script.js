@@ -26,41 +26,71 @@ const upperDisplay = document.querySelector(".upper-display")
 let firstNum = "";
 let operationSign = "";
 let secondNum = "";
+let helperNum = "";
+let result = 0;
 let operationIdent = ["+", "-", "*", "/"];
+let iteration = 1;
 
-function displayNumber(e){  
+function displayNumber(e) {
     //checking if user user + - * /
-    //save number before sign to secondNum
-    if(operationIdent.some(op => firstNum.includes(op))){
-        secondNum = firstNum.slice(0, -1);
-        operationSign = firstNum.slice(-1)
-        upperDisplay.textContent = `${secondNum} (${operationSign})`;
-        firstNum = "";
-        secondNum = "";
+    if (operationIdent.includes(e.target.value)) {
+
+        // for first time user use operator
+        if (iteration === 1) {
+           
+            //save operator
+            operationSign = e.target.value;
+
+            //save first part of calculating function into helperNum variable
+            helperNum = calculateOperation(firstNum, operationSign)
+        
+
+            // handle escape from if, we want if to run only once
+            iteration += 1;
+        } else {
+            operationSign = e.target.value;
+            result = helperNum(firstNum);
+            upperDisplay.textContent = `${result} ${operationSign}`;
+            lowerDisplay.textContent = "";
+            helperNum = calculateOperation(result, operationSign);
+        }
+
+
+    }
+
+    //if = button end calculation
+    if(e.target.value == "="){
         lowerDisplay.textContent = "";
+        result = helperNum(firstNum);
+        lowerDisplay.textContent = result;
+        iteration = 1;
     }
 
     lowerDisplay.textContent += e.target.textContent;
-    firstNum += e.target.value;
-    console.log("firstnum: " + firstNum);
-    
-    
+    firstNum = e.target.textContent;
+
+
 }
 
+
 //make callculation based on operation
-function calculateResult(a, b, operator){
-    switch (operator) {
-        case '+':
-            return a + b;
-        case '-':
-            return a - b;
-        case '*':
-            return a * b;
-        case '/':
-            return a / b;
-        default:
-            return 'Invalid operator';
-    }
+function calculateOperation(a, operator) {
+    return function (b) {
+        let numA = parseInt(a);
+        let numB = parseInt(b);
+        switch (operator) {
+            case '+':
+                return numA + numB;
+            case '-':
+                return numA - numB;
+            case '*':
+                return numA * numB;
+            case '/':
+                return numB !== 0 ? numA / numB : 'Cannot divide by zero';
+            default:
+                return 'Invalid operator';
+        }
+    };
 }
 
 //buttons listener for displaying number
@@ -79,4 +109,5 @@ plusBtn.addEventListener("click", displayNumber);
 minusBtn.addEventListener("click", displayNumber);
 divideBtn.addEventListener("click", displayNumber);
 multiplyBtn.addEventListener("click", displayNumber);
+enterBtn.addEventListener("click", displayNumber);
 
