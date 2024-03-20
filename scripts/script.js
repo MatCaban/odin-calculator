@@ -26,23 +26,8 @@ const lowerDisplay = document.querySelector(".lower-display")
 let firstNum = "";
 let operationSign = "";
 let secondNum = "";
-let isOperatorClicked = false;
-const operators = [" X ", " - ", " + ", " / "]
 
-function displayNumber(e){
-    if(operators.includes(e.target.textContent)){
-        isOperatorClicked = true;
-        operationSign = e.target.textContent;
-        console.log(`operation: ${operationSign}`);
-    }
-
-    if(!isOperatorClicked){
-        firstNum += e.target.textContent;
-        console.log(`firstNum: ${firstNum}`)
-    } else if(e.target.textContent !== operationSign){
-        secondNum += e.target.textContent;
-        console.log(`secondNum: ${secondNum}`)
-    }
+function displayNumber(e){          
 
     lowerDisplay.textContent += e.target.textContent;
 
