@@ -30,16 +30,19 @@ let result = 0;
 let operationIdent = ["+", "-", "*", "/"];
 let iteration = 1;
 let operatorClicked = false;
-let resultDisplayed = false; // Add this line
+let resultDisplayed = false;
 
-// Function to display the number when a button is clicked
-function displayNumber(e) {
-
+// Function that clears upper and lower display after another button is clicked
+// after enter button
+function clearAfterEnter(e) {
     if (!isNaN(e.target.textContent) && resultDisplayed) {
         lowerDisplay.textContent = "";
         upperDisplay.textContent = "";
         resultDisplayed = false;
     }
+}
+
+function manageCalculatorLogic(e){
     // Check if the clicked button is an operator
     if (operationIdent.includes(e.target.value)) {
 
@@ -66,6 +69,14 @@ function displayNumber(e) {
 
 
     }
+}
+
+// Function to display the number when a button is clicked
+function displayNumber(e) {
+
+    clearAfterEnter(e);
+    
+    manageCalculatorLogic(e)
 
     // If the equals button is clicked, end the calculation
     if (e.target.value === "=") {
