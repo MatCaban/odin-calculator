@@ -1,4 +1,4 @@
-//selectors for all buttons
+// Select all buttons from the DOM
 const zeroBtn = document.querySelector("#b0");
 const oneBtn = document.querySelector("#b1");
 const twoBtn = document.querySelector("#b2");
@@ -18,11 +18,11 @@ const enterBtn = document.querySelector("#enter");
 const clearEntryBtn = document.querySelector("#clear-entry");
 const clearAllBtn = document.querySelector("#clear-all")
 
-// Selectors for display elements
+// Select display elements from the DOM
 const lowerDisplay = document.querySelector(".lower-display")
 const upperDisplay = document.querySelector(".upper-display")
 
-// Variables to store the first number, operation sign, second number, helper number, result, operation identifiers, iteration count, and operator clicked status
+// Initialize variables to store the state of the calculator
 let firstNum = "";
 let operationSign = "";
 let helperNum = "";
@@ -33,14 +33,12 @@ let operatorClicked = false;
 let resultDisplayed = false;
 let allwoClearEntry = true;
 
-// Function that clears upper and lower display after another button is clicked
-// after enter button
 
-
+// Function to manage the logic of the calculator
 function manageCalculatorLogic(e){
     // Check if the clicked button is an operator
     if (operationIdent.includes(e.target.value)) {
-
+        allwoClearEntry = false;
         // If this is the first time an operator is clicked
         if (iteration === 1) {
 
@@ -64,9 +62,10 @@ function manageCalculatorLogic(e){
 
 
     }
+    allwoClearEntry = true;
 }
 
-
+// Function to handle the equals button click
 function enterBtnEndCalculation(e){
     // If the equals button is clicked, end the calculation
     if (e.target.value === "=") {
@@ -79,6 +78,7 @@ function enterBtnEndCalculation(e){
     }
 }
 
+// Function to clear the display after the equals button is clicked
 function clearAfterEnter(e) {
     if (!isNaN(e.target.textContent) && resultDisplayed) {
         lowerDisplay.textContent = "";
@@ -88,6 +88,8 @@ function clearAfterEnter(e) {
     }
 }
 
+
+// Function to handle multiple numeric inputs
 function multiNumericHandler(e) {
     if (!isNaN(e.target.textContent)) {
         if (operatorClicked) {
@@ -147,7 +149,7 @@ function displayNumber(e) {
 
 
 
-//Function to clear one number
+// Function to clear the last entered number
 function clearEntry() {
     if(allwoClearEntry){
         firstNum = firstNum.slice(0, -1);
@@ -157,6 +159,7 @@ function clearEntry() {
 
 }
 
+// Function to clear all inputs and reset the calculator
 function clearAll() {
     firstNum = "";
     operationSign = "";
