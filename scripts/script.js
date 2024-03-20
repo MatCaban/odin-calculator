@@ -123,13 +123,9 @@ function calculateOperation(a, operator) {
 
 //Function to clear one number
 function clearEntry() {
-    if (Number(lowerDisplay.textContent.slice(0, -1))) {
-        lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -3);
-        operationSign = "";
-    } else {
+    
         firstNum = firstNum.slice(0, -1);
         lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
-    }
 
 }
 
