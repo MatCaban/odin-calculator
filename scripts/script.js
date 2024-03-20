@@ -15,7 +15,7 @@ const divideBtn = document.querySelector("#divide");
 const multiplyBtn = document.querySelector("#multiply");
 const minusBtn = document.querySelector("#minus");
 const enterBtn = document.querySelector("#enter");
-
+const clearEntryBtn = document.querySelector("#clear-entry");
 
 
 // Selectors for display elements
@@ -62,7 +62,7 @@ function displayNumber(e) {
     }
 
     // If the equals button is clicked, end the calculation
-    if (e.target.value == "=") {
+    if (e.target.value === "=") {
         lowerDisplay.textContent = "";
         result = helperNum(firstNum);
         lowerDisplay.textContent = result;
@@ -80,12 +80,11 @@ function displayNumber(e) {
             firstNum = e.target.textContent;
             operatorClicked = false;
         } else {
-                        // If the previous button clicked was not an operator, append the clicked button's text to firstNum
+            // If the previous button clicked was not an operator, append the clicked button's text to firstNum
             firstNum = (firstNum || "") + e.target.textContent;
         }
     } else {
-                // If the clicked button's text is not a number, set operatorClicked to true
-
+        // If the clicked button's text is not a number, set operatorClicked to true
         operatorClicked = true;
     }
     console.log(firstNum);
@@ -115,6 +114,18 @@ function calculateOperation(a, operator) {
     };
 }
 
+//Function to clear one number
+function clearEntry() {
+    if (isNaN(lowerDisplay.textContent.slice(0, -1))) {
+        lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -3);
+        operationSign = "";
+    } else {
+        firstNum = firstNum.slice(0, -1);
+        lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
+    }
+
+}
+
 // Add click event listeners to all buttons to call the displayNumber function when clicked
 zeroBtn.addEventListener("click", displayNumber);
 oneBtn.addEventListener("click", displayNumber);
@@ -133,3 +144,5 @@ divideBtn.addEventListener("click", displayNumber);
 multiplyBtn.addEventListener("click", displayNumber);
 enterBtn.addEventListener("click", displayNumber);
 
+
+clearEntryBtn.addEventListener("click", clearEntry);
