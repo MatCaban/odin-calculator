@@ -18,11 +18,11 @@ const enterBtn = document.querySelector("#enter");
 
 
 
-
+// Selectors for display elements
 const lowerDisplay = document.querySelector(".lower-display")
 const upperDisplay = document.querySelector(".upper-display")
 
-//write number of selected button into display
+// Variables to store the first number, operation sign, second number, helper number, result, operation identifiers, iteration count, and operator clicked status
 let firstNum = "";
 let operationSign = "";
 let secondNum = "";
@@ -32,23 +32,25 @@ let operationIdent = ["+", "-", "*", "/"];
 let iteration = 1;
 let operatorClicked = false;
 
+// Function to display the number when a button is clicked
 function displayNumber(e) {
-    //checking if user user + - * /
+    // Check if the clicked button is an operator
     if (operationIdent.includes(e.target.value)) {
 
-        // for first time user use operator
+        // If this is the first time an operator is clicked
         if (iteration === 1) {
-           
+
             //save operator
             operationSign = e.target.value;
 
-            //save first part of calculating function into helperNum variable
+            // Save the first part of the calculation into helperNum variable
             helperNum = calculateOperation(firstNum, operationSign)
-        
 
-            // handle escape from if, we want if to run only once
+
+            // Increment the iteration count
             iteration += 1;
         } else {
+            // If this is not the first time an operator is clicked
             operationSign = e.target.value;
             result = helperNum(firstNum);
             upperDisplay.textContent = `${result} ${operationSign}`;
@@ -59,27 +61,31 @@ function displayNumber(e) {
 
     }
 
-    //if = button end calculation
-    if(e.target.value == "="){
+    // If the equals button is clicked, end the calculation
+    if (e.target.value == "=") {
         lowerDisplay.textContent = "";
         result = helperNum(firstNum);
         lowerDisplay.textContent = result;
         iteration = 1;
     }
 
+    // Display the clicked button's text
     lowerDisplay.textContent += e.target.textContent;
 
     // need to fix multi numeric numbers
-
+    // If the clicked button's text is a number
     if (!isNaN(e.target.textContent)) {
         if (operatorClicked) {
-            // if previous numner was operator, it will clear first num value
+            // If the previous button clicked was an operator, clear firstNum
             firstNum = e.target.textContent;
             operatorClicked = false;
         } else {
+                        // If the previous button clicked was not an operator, append the clicked button's text to firstNum
             firstNum = (firstNum || "") + e.target.textContent;
         }
     } else {
+                // If the clicked button's text is not a number, set operatorClicked to true
+
         operatorClicked = true;
     }
     console.log(firstNum);
@@ -89,7 +95,7 @@ function displayNumber(e) {
 }
 
 
-//make callculation based on operation
+// Function to calculate the result based on the operator
 function calculateOperation(a, operator) {
     return function (b) {
         let numA = parseInt(a);
@@ -109,7 +115,7 @@ function calculateOperation(a, operator) {
     };
 }
 
-//buttons listener for displaying number
+// Add click event listeners to all buttons to call the displayNumber function when clicked
 zeroBtn.addEventListener("click", displayNumber);
 oneBtn.addEventListener("click", displayNumber);
 twoBtn.addEventListener("click", displayNumber);
