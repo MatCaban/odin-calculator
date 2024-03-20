@@ -71,13 +71,8 @@ function manageCalculatorLogic(e){
     }
 }
 
-// Function to display the number when a button is clicked
-function displayNumber(e) {
 
-    clearAfterEnter(e);
-    
-    manageCalculatorLogic(e)
-
+function enterBtnEndCalculation(e){
     // If the equals button is clicked, end the calculation
     if (e.target.value === "=") {
         lowerDisplay.textContent = "";
@@ -86,12 +81,9 @@ function displayNumber(e) {
         iteration = 1;
         resultDisplayed = true;
     }
+}
 
-    // Display the clicked button's text
-    lowerDisplay.textContent += e.target.textContent;
-
-    // need to fix multi numeric numbers
-    // If the clicked button's text is a number
+function multiNumericHandler(e) {
     if (!isNaN(e.target.textContent)) {
         if (operatorClicked) {
             // If the previous button clicked was an operator, clear firstNum
@@ -105,11 +97,8 @@ function displayNumber(e) {
         // If the clicked button's text is not a number, set operatorClicked to true
         operatorClicked = true;
     }
-
-
-
-
 }
+
 
 
 // Function to calculate the result based on the operator
@@ -131,6 +120,27 @@ function calculateOperation(a, operator) {
         }
     };
 }
+
+// Function to display the number when a button is clicked
+function displayNumber(e) {
+
+    clearAfterEnter(e);
+    
+    manageCalculatorLogic(e)
+
+    enterBtnEndCalculation(e)
+
+    // Display the clicked button's text
+    lowerDisplay.textContent += e.target.textContent;
+    
+    multiNumericHandler(e)
+
+
+
+}
+
+
+
 
 //Function to clear one number
 function clearEntry() {
