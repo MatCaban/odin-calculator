@@ -30,6 +30,7 @@ let helperNum = "";
 let result = 0;
 let operationIdent = ["+", "-", "*", "/"];
 let iteration = 1;
+let operatorClicked = false;
 
 function displayNumber(e) {
     //checking if user user + - * /
@@ -67,7 +68,22 @@ function displayNumber(e) {
     }
 
     lowerDisplay.textContent += e.target.textContent;
-    firstNum = e.target.textContent;
+
+    // need to fix multi numeric numbers
+
+    if (!isNaN(e.target.textContent)) {
+        if (operatorClicked) {
+            // if previous numner was operator, it will clear first num value
+            firstNum = e.target.textContent;
+            operatorClicked = false;
+        } else {
+            firstNum = (firstNum || "") + e.target.textContent;
+        }
+    } else {
+        operatorClicked = true;
+    }
+    console.log(firstNum);
+
 
 
 }
