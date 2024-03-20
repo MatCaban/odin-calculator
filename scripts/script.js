@@ -31,16 +31,11 @@ let operationIdent = ["+", "-", "*", "/"];
 let iteration = 1;
 let operatorClicked = false;
 let resultDisplayed = false;
+let allwoClearEntry = true;
 
 // Function that clears upper and lower display after another button is clicked
 // after enter button
-function clearAfterEnter(e) {
-    if (!isNaN(e.target.textContent) && resultDisplayed) {
-        lowerDisplay.textContent = "";
-        upperDisplay.textContent = "";
-        resultDisplayed = false;
-    }
-}
+
 
 function manageCalculatorLogic(e){
     // Check if the clicked button is an operator
@@ -80,6 +75,16 @@ function enterBtnEndCalculation(e){
         lowerDisplay.textContent = result;
         iteration = 1;
         resultDisplayed = true;
+        allwoClearEntry = false;
+    }
+}
+
+function clearAfterEnter(e) {
+    if (!isNaN(e.target.textContent) && resultDisplayed) {
+        lowerDisplay.textContent = "";
+        upperDisplay.textContent = "";
+        resultDisplayed = false;
+        allwoClearEntry = true;
     }
 }
 
@@ -144,9 +149,11 @@ function displayNumber(e) {
 
 //Function to clear one number
 function clearEntry() {
-    
+    if(allwoClearEntry){
         firstNum = firstNum.slice(0, -1);
         lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
+    }
+        
 
 }
 
