@@ -47,6 +47,22 @@ function displayNumber(e){
     
 }
 
+//make callculation based on operation
+function calculateResult(a, b, operator){
+    switch (operator) {
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '*':
+            return a * b;
+        case '/':
+            return a / b;
+        default:
+            return 'Invalid operator';
+    }
+}
+
 //buttons listener for displaying number
 zeroBtn.addEventListener("click", displayNumber);
 oneBtn.addEventListener("click", displayNumber);
