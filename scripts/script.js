@@ -16,7 +16,7 @@ const multiplyBtn = document.querySelector("#multiply");
 const minusBtn = document.querySelector("#minus");
 const enterBtn = document.querySelector("#enter");
 const clearEntryBtn = document.querySelector("#clear-entry");
-
+const clearAllBtn = document.querySelector("#clear-all")
 
 // Selectors for display elements
 const lowerDisplay = document.querySelector(".lower-display")
@@ -25,7 +25,6 @@ const upperDisplay = document.querySelector(".upper-display")
 // Variables to store the first number, operation sign, second number, helper number, result, operation identifiers, iteration count, and operator clicked status
 let firstNum = "";
 let operationSign = "";
-let secondNum = "";
 let helperNum = "";
 let result = 0;
 let operationIdent = ["+", "-", "*", "/"];
@@ -126,6 +125,19 @@ function clearEntry() {
 
 }
 
+function clearAll() {
+    firstNum = "";
+    operationSign = "";
+    helperNum = "";
+    result = 0;
+    iteration = 1;
+    lowerDisplay.textContent = "";
+    upperDisplay.textContent = "";
+
+}
+
+
+
 // Add click event listeners to all buttons to call the displayNumber function when clicked
 zeroBtn.addEventListener("click", displayNumber);
 oneBtn.addEventListener("click", displayNumber);
@@ -146,3 +158,4 @@ enterBtn.addEventListener("click", displayNumber);
 
 
 clearEntryBtn.addEventListener("click", clearEntry);
+clearAllBtn.addEventListener("click", clearAll);
