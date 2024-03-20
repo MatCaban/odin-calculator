@@ -26,11 +26,12 @@ const lowerDisplay = document.querySelector(".lower-display")
 let firstNum = "";
 let operationSign = "";
 let secondNum = "";
+let operationIdent = [" + ", " - ", " X ", " / "];
 
-function displayNumber(e){          
-
+function displayNumber(e){  
     lowerDisplay.textContent += e.target.textContent;
-
+    firstNum += e.target.textContent;
+    
     
 }
 
