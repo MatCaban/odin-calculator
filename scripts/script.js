@@ -20,7 +20,7 @@ const enterBtn = document.querySelector("#enter");
 
 
 const lowerDisplay = document.querySelector(".lower-display")
-const.upperDisplay = document.querySelector(".upper-display")
+const upperDisplay = document.querySelector(".upper-display")
 
 //write number of selected button into display
 let firstNum = "";
@@ -30,12 +30,14 @@ let operationIdent = ["+", "-", "*", "/"];
 
 function displayNumber(e){  
     //checking if user user + - * /
+    //save number before sign to secondNum
     if(operationIdent.some(op => firstNum.includes(op))){
-        console.log("indendttsteesa")
         secondNum = firstNum.slice(0, -1);
         operationSign = firstNum.slice(-1)
-        console.log("second Number:" + secondNum);
-        console.log("operation " + operationSign);
+        upperDisplay.textContent = `${secondNum} (${operationSign})`;
+        firstNum = "";
+        secondNum = "";
+        lowerDisplay.textContent = "";
     }
 
     lowerDisplay.textContent += e.target.textContent;
