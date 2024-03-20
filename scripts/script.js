@@ -30,9 +30,16 @@ let result = 0;
 let operationIdent = ["+", "-", "*", "/"];
 let iteration = 1;
 let operatorClicked = false;
+let resultDisplayed = false; // Add this line
 
 // Function to display the number when a button is clicked
 function displayNumber(e) {
+
+    if (!isNaN(e.target.textContent) && resultDisplayed) {
+        lowerDisplay.textContent = "";
+        upperDisplay.textContent = "";
+        resultDisplayed = false;
+    }
     // Check if the clicked button is an operator
     if (operationIdent.includes(e.target.value)) {
 
@@ -66,6 +73,7 @@ function displayNumber(e) {
         result = helperNum(firstNum);
         lowerDisplay.textContent = result;
         iteration = 1;
+        resultDisplayed = true;
     }
 
     // Display the clicked button's text
@@ -86,7 +94,7 @@ function displayNumber(e) {
         // If the clicked button's text is not a number, set operatorClicked to true
         operatorClicked = true;
     }
-    console.log(firstNum);
+
 
 
 
@@ -115,7 +123,7 @@ function calculateOperation(a, operator) {
 
 //Function to clear one number
 function clearEntry() {
-    if (isNaN(lowerDisplay.textContent.slice(0, -1))) {
+    if (Number(lowerDisplay.textContent.slice(0, -1))) {
         lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -3);
         operationSign = "";
     } else {
