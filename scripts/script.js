@@ -1,22 +1,17 @@
 // Select all buttons from the DOM
-const zeroBtn = document.querySelector("#b0");
-const oneBtn = document.querySelector("#b1");
-const twoBtn = document.querySelector("#b2");
-const threeBtn = document.querySelector("#b3");
-const fourBtn = document.querySelector("#b4");
-const fiveBtn = document.querySelector("#b5");
-const sixBtn = document.querySelector("#b6");
-const sevenBtn = document.querySelector("#b7");
-const eightBtn = document.querySelector("#b8");
-const nineBtn = document.querySelector("#b9");
-const commaBtn = document.querySelector("#comma");
-const plusBtn = document.querySelector("#plus");
-const divideBtn = document.querySelector("#divide");
-const multiplyBtn = document.querySelector("#multiply");
-const minusBtn = document.querySelector("#minus");
-const enterBtn = document.querySelector("#enter");
-const clearEntryBtn = document.querySelector("#clear-entry");
-const clearAllBtn = document.querySelector("#clear-all")
+const allButtons = document.querySelectorAll("button");
+
+
+// Add click event listeners to all buttons to call the displayNumber function when clicked
+allButtons.forEach(button => {
+    if(button.id === "clear-all"){
+        button.addEventListener("click", clearAll)
+    } else if (button.id === "clear-entry") {
+        button.addEventListener("click", clearEntry)
+    } else {
+        button.addEventListener("click", displayNumber)
+    }
+});
 
 // Select display elements from the DOM
 const lowerDisplay = document.querySelector(".lower-display")
@@ -171,26 +166,3 @@ function clearAll() {
 
 }
 
-
-
-// Add click event listeners to all buttons to call the displayNumber function when clicked
-zeroBtn.addEventListener("click", displayNumber);
-oneBtn.addEventListener("click", displayNumber);
-twoBtn.addEventListener("click", displayNumber);
-threeBtn.addEventListener("click", displayNumber);
-fourBtn.addEventListener("click", displayNumber);
-fiveBtn.addEventListener("click", displayNumber);
-sixBtn.addEventListener("click", displayNumber);
-sevenBtn.addEventListener("click", displayNumber);
-eightBtn.addEventListener("click", displayNumber);
-nineBtn.addEventListener("click", displayNumber);
-commaBtn.addEventListener("click", displayNumber);
-plusBtn.addEventListener("click", displayNumber);
-minusBtn.addEventListener("click", displayNumber);
-divideBtn.addEventListener("click", displayNumber);
-multiplyBtn.addEventListener("click", displayNumber);
-enterBtn.addEventListener("click", displayNumber);
-
-
-clearEntryBtn.addEventListener("click", clearEntry);
-clearAllBtn.addEventListener("click", clearAll);
