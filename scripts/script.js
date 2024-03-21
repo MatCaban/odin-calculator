@@ -2,7 +2,7 @@
 const allButtons = document.querySelectorAll("button");
 
 
-// Add click event listeners to all buttons to call the displayNumber function when clicked
+// Add click event listeners to all buttons 
 allButtons.forEach(button => {
     if(button.id === "clear-all"){
         button.addEventListener("click", clearAll)
@@ -30,6 +30,7 @@ let allwoClearEntry = true;
 
 
 // Function to manage the logic of the calculator
+// Checks if the clicked button is an operator and performs the necessary operations
 function manageCalculatorLogic(e){
     // Check if the clicked button is an operator
     if (operationIdent.includes(e.target.value)) {
