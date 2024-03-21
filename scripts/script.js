@@ -84,6 +84,7 @@ function clearAfterEnter(e) {
 }
 
 
+
 // Function to handle multiple numeric inputs
 function multiNumericHandler(e) {
     if (!isNaN(e.target.textContent)) {
@@ -91,13 +92,23 @@ function multiNumericHandler(e) {
             // If the previous button clicked was an operator, clear firstNum
             firstNum = e.target.textContent;
             operatorClicked = false;
+            //again enable user to use comma
+            const commaButton = document.getElementById("comma");
+            commaButton.addEventListener("click", displayNumber);
         } else {
             // If the previous button clicked was not an operator, append the clicked button's text to firstNum
             firstNum = (firstNum || "") + e.target.textContent;
         }
     } else {
         // If the clicked button's text is not a number, set operatorClicked to true
-        operatorClicked = true;
+        // This is here so user will not enter more then one comma per number
+        if(e.target.textContent === "."){
+            firstNum = (firstNum || "") + e.target.textContent;
+            e.target.removeEventListener("click", displayNumber);
+        } else {
+            operatorClicked = true;
+        }
+        
     }
 }
 
@@ -106,8 +117,8 @@ function multiNumericHandler(e) {
 // Function to calculate the result based on the operator
 function calculateOperation(a, operator) {
     return function (b) {
-        let numA = parseInt(a);
-        let numB = parseInt(b);
+        let numA = parseFloat(a);
+        let numB = parseFloat(b);
         switch (operator) {
             case '+':
                 return numA + numB;
@@ -137,7 +148,7 @@ function displayNumber(e) {
     
     multiNumericHandler(e)
 
-
+    console.log(firstNum);
 
 }
 
