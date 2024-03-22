@@ -63,7 +63,7 @@ function manageCalculatorLogic(e){
             result = tempStoreCalculation(firstNum);
             upperDisplay.textContent = `${result} ${operationSign}`;
             lowerDisplay.textContent = "";
-         tempStoreCalculation = calculateOperation(result, operationSign);
+            tempStoreCalculation = calculateOperation(result, operationSign);
         }
 
 
@@ -150,6 +150,8 @@ function displayNumber(e) {
 
     clearAfterEnter(e);
     
+    
+
     manageCalculatorLogic(e)
 
     enterBtnEndCalculation(e)
@@ -158,8 +160,6 @@ function displayNumber(e) {
     lowerDisplay.textContent += e.target.textContent;
     
     multiNumericHandler(e)
-
-    console.log(firstNum);
 
 }
 
