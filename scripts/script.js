@@ -178,3 +178,43 @@ function clearAll() {
 
 }
 
+
+
+// Adding keystroke functionality
+
+const keyMap = {
+    "1" : "#b1",
+    "2" : "#b2",
+    "3" : "#b3",
+    "4" : "#b4",
+    "5" : "#b5",
+    "6" : "#b6",
+    "7" : "#b7",
+    "8" : "#b8",
+    "9" : "#b9",
+    "0" : "#b0",
+    "+" : "#plus",
+    "-" : "#minus",
+    "*" : "multiply",
+    "/" : "divide",
+    "Enter" : "#enter",
+    "." : "#comma",
+    "Backspace" : "#clear-entry",
+    "Escape" : "#clear-all"
+}
+
+
+// if key pressed is from keyMap,select that key and add click()function
+// from there it is handled as we mouse click on button
+function handleKeyPress(e){
+    const key = e.key;
+    const keyPressed = keyMap[key];
+    if(keyPressed){
+        const button = document.querySelector(keyPressed);
+        if(button){
+            button.click();
+        }
+    }
+}
+
+document.addEventListener("keydown", handleKeyPress);
