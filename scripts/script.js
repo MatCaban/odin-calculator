@@ -30,13 +30,13 @@ const upperDisplay = document.querySelector(".upper-display")
 // Initialize variables to store the state of the calculator
 let firstNum = "";
 let operationSign = "";
-let helperNum = "";
+let tempStoreCalculation = "";
 let result = 0;
-let operationIdent = ["+", "-", "*", "/"];
+const operationIdent = ["+", "-", "*", "/"];
 let iteration = 1;
 let operatorClicked = false;
 let resultDisplayed = false;
-let allwoClearEntry = true;
+let canDeleteNumber = true;
 
 
 // Function to manage the logic of the calculator
@@ -44,15 +44,15 @@ let allwoClearEntry = true;
 function manageCalculatorLogic(e){
     // Check if the clicked button is an operator
     if (operationIdent.includes(e.target.value)) {
-        allwoClearEntry = false;
+        canDeleteNumber = false;
         // If this is the first time an operator is clicked
         if (iteration === 1) {
 
             //save operator
             operationSign = e.target.value;
 
-            // Save the first part of the calculation into helperNum variable
-            helperNum = calculateOperation(firstNum, operationSign)
+            // Save the first part of the calculation into tempStoreCalculation variable
+         tempStoreCalculation = calculateOperation(firstNum, operationSign)
 
 
             // Increment the iteration count
@@ -60,15 +60,15 @@ function manageCalculatorLogic(e){
         } else {
             // If this is not the first time an operator is clicked
             operationSign = e.target.value;
-            result = helperNum(firstNum);
+            result = tempStoreCalculation(firstNum);
             upperDisplay.textContent = `${result} ${operationSign}`;
             lowerDisplay.textContent = "";
-            helperNum = calculateOperation(result, operationSign);
+         tempStoreCalculation = calculateOperation(result, operationSign);
         }
 
 
     }
-    allwoClearEntry = true;
+    canDeleteNumber = true;
 }
 
 // Function to handle the equals button click
@@ -76,11 +76,11 @@ function enterBtnEndCalculation(e){
     // If the equals button is clicked, end the calculation
     if (e.target.value === "=") {
         lowerDisplay.textContent = "";
-        result = helperNum(firstNum);
+        result = tempStoreCalculation(firstNum);
         lowerDisplay.textContent = result;
         iteration = 1;
         resultDisplayed = true;
-        allwoClearEntry = false;
+        canDeleteNumber = false;
     }
 }
 
@@ -90,7 +90,7 @@ function clearAfterEnter(e) {
         lowerDisplay.textContent = "";
         upperDisplay.textContent = "";
         resultDisplayed = false;
-        allwoClearEntry = true;
+        canDeleteNumber = true;
     }
 }
 
@@ -168,7 +168,7 @@ function displayNumber(e) {
 
 // Function to clear the last entered number
 function clearEntry() {
-    if(allwoClearEntry){
+    if(canDeleteNumber){
         firstNum = firstNum.slice(0, -1);
         lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
     }
@@ -180,7 +180,7 @@ function clearEntry() {
 function clearAll() {
     firstNum = "";
     operationSign = "";
-    helperNum = "";
+ tempStoreCalculation = "";
     result = 0;
     iteration = 1;
     lowerDisplay.textContent = "";
