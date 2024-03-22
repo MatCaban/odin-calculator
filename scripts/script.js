@@ -1,3 +1,13 @@
+/**
+ * This script file contains the logic for a calculator application.
+ * It handles button clicks, performs calculations, and updates the display.
+ * The calculator supports basic arithmetic operations (+, -, *, /) and decimal numbers.
+ * It also includes keyboard support for entering numbers and performing calculations.
+ *
+ * @file This file contains the logic for the calculator application.
+ * @summary Calculator application script file.
+ * @version 1.0.0
+ */
 // Select all buttons from the DOM
 const allButtons = document.querySelectorAll("button");
 
@@ -218,3 +228,4 @@ function handleKeyPress(e){
 }
 
 document.addEventListener("keydown", handleKeyPress);
+

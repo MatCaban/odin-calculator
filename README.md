@@ -10,8 +10,8 @@ This project is part of [The Odin Project](https://www.theodinproject.com/) curr
 
 ## Future Improvements
 
-- Add functionality for floating-point numbers to allow decimal calculations.
-- Implement functionality for keyboard buttons to enhance user experience.
+- Add functionality for floating-point numbers to allow decimal calculations. added 22.03.24
+- Implement functionality for keyboard buttons to enhance user experience. 22.03.24
 
 ## Getting Started
 
